@@ -165,10 +165,12 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 	//Switch lists if user is staff
 	searchList := HelpsListData{}
 
-	for _, role := range m.Member.Roles {
-		if role == staffRole {
-			staffMode = true
-			break
+	if staffRole != "" {
+		for _, role := range m.Member.Roles {
+			if role == staffRole {
+				staffMode = true
+				break
+			}
 		}
 	}
 
