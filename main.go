@@ -13,7 +13,7 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"goDiscInfoBot/cwlog"
+	"M45HelpBot/cwlog"
 )
 
 var (

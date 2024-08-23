@@ -1,10 +1,10 @@
 package main
 
 import (
+	"M45HelpBot/cwlog"
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"goDiscInfoBot/cwlog"
 	"os"
 )
 
