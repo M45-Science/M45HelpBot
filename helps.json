@@ -14,7 +14,9 @@
 				],
 				"Words": [
 					"revert",
-					"rewind"
+					"reverted",
+					"rewind",
+					"rewound"
 				],
 				"ReplyLines": [
 					"If you are not registered, please do so.",
@@ -42,13 +44,15 @@
 				]
 			},
 			{
+				"Wildcards": [
+					"whitelist"
+				],
 				"Words": [
 					"register",
 					"member",
 					"regular",
 					"veteran",
 					"expired",
-					"whitelist",
 					"login"
 				],
 				"Exclude": [
@@ -108,7 +112,9 @@
 				],
 				"Words": [
 					"revert",
-					"rewind"
+					"reverted",
+					"rewind",
+					"rewound"
 				],
 				"ReplyLines": [
 					"Use the `/changemap` command, press enter and choose desired option from the dialog box.",
