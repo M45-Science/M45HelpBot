@@ -16,9 +16,10 @@ const (
 
 var (
 	/* Discord data */
-	discToken string
-	staffRole string
-	guildID   string
+	discToken    string
+	staffRole    string
+	guildID      string
+	staffChannel string
 
 	lastReply              time.Time
 	users                  map[string]*userData = map[string]*userData{}

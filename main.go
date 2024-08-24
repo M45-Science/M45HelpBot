@@ -29,6 +29,7 @@ func main() {
 
 	token := flag.String("token", "", "discord token")
 	role := flag.String("staffid", "", "discord role ID for moderator/staff")
+	staffChan := flag.String("staffChannel", "", "specifiy a staff-only channel")
 	guildid := flag.String("guildid", "", "discord guild id")
 	testMode := flag.Bool("testmode", false, "skip throttle check")
 	helpPath := flag.String("helpFilePath", "helps.json", "Specify path to helps file.")
@@ -39,6 +40,7 @@ func main() {
 	guildID = *guildid
 	skipThrottle = *testMode
 	helpsFile = *helpPath
+	staffChannel = *staffChan
 
 	/* Start cw logs */
 	cwlog.StartCWLog()
@@ -170,6 +172,10 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 		for _, role := range m.Member.Roles {
 			if role == staffRole {
 				staffMode = true
+				if staffChannel != "" &&
+					m.ChannelID != staffChannel {
+					return
+				}
 				break
 			}
 		}
