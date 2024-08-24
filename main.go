@@ -14,6 +14,7 @@ import (
 	"golang.org/x/text/language"
 
 	"M45HelpBot/cwlog"
+	"M45HelpBot/sclean"
 )
 
 var (
@@ -194,6 +195,7 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 	msgWild := strings.ReplaceAll(msgLower, " the ", " ")
 	msgWild = strings.ReplaceAll(msgWild, " ", "")
 	msgWild = strings.ReplaceAll(msgWild, "-", "")
+	msgWild = sclean.AlphaNumOnly(msgWild)
 
 	outLines := []string{}
 
@@ -246,8 +248,9 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 			if resposeCount >= maxCombinedResponses {
 				break
 			}
+			msgWord = sclean.AlphaNumOnly(msgWord)
 			for _, helpWord := range help.Words {
-				if strings.Contains(msgWord, helpWord) {
+				if strings.EqualFold(msgWord, helpWord) {
 					doExclude := false
 					for _, exclude := range help.Exclude {
 						if strings.Contains(msgWild, exclude) {
