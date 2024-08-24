@@ -30,7 +30,7 @@ func main() {
 	role := flag.String("staffid", "", "discord role ID for moderator/staff")
 	guildid := flag.String("guildid", "", "discord guild id")
 	testMode := flag.Bool("testmode", false, "skip throttle check")
-	helpPath := flag.String("helpFilePath", "helps.hlp", "Specify path to helps file.")
+	helpPath := flag.String("helpFilePath", "helps.hlp", "Specify path to helps file. JSON format.")
 	flag.Parse()
 
 	discToken = *token
