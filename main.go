@@ -190,8 +190,12 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	//Condense the string for wildcard matches
-	msgLower := strings.ToLower(m.Content)
+	//Prefilter markdown and control and to lower case
+	msgLower := sclean.RemoveDiscordMarkdown(m.Content)
+	msgLower = sclean.StripControlAndSpecial(msgLower)
+	msgLower = strings.ToLower(msgLower)
+
+	//Filter delims for wildcard matching
 	msgWild := strings.ReplaceAll(msgLower, " the ", " ")
 	msgWild = strings.ReplaceAll(msgWild, " ", "")
 	msgWild = strings.ReplaceAll(msgWild, "-", "")
