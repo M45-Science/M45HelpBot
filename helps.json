@@ -9,11 +9,11 @@
 					"resetmap",
 					"mapreset",
 					"votemap",
-					"startover"
+					"startover",
+					"rollback"
 				],
 				"Words": [
 					"revert",
-					"rollback",
 					"rewind"
 				],
 				"ReplyLines": [
@@ -30,7 +30,8 @@
 					"grifer",
 					"troll",
 					"ban",
-					"banish"
+					"banish",
+					"spam"
 				],
 				"ReplyLines": [
 					"If the griefer/troll is on your factorio map, click the top-left icon (M45 flask \u0026 inserter logo) for info on how to vote to banish the player.",
