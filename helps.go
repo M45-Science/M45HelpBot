@@ -15,19 +15,19 @@ type HelpsListData struct {
 	Data []helpData
 }
 
-func readHelps() {
+func readHelps() bool {
 	file, err := os.ReadFile(helpsFile)
 
 	if err != nil {
 		cwlog.DoLog(err.Error())
-		return
+		return false
 	}
 
 	err = json.Unmarshal(file, &helpsList)
 
 	if err != nil {
 		cwlog.DoLog("Error: readHelps: Unable to unmashal helps file.")
-		return
+		return false
 	}
 
 	helpsCount := 0
@@ -37,6 +37,8 @@ func readHelps() {
 
 	buf := fmt.Sprintf("Loaded %v helps types, and %v helps.", len(helpsList), helpsCount)
 	cwlog.DoLog(buf)
+
+	return true
 }
 
 func writeHelps() {
