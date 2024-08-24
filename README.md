@@ -8,7 +8,7 @@ Usage of M45HelpBot:
   
   -helpFilePath string
   
-        Specify path to helps file. (default "helps.hlp")
+        Specify path to helps file. (default "helps.hlp" json format)
   
   -staffid string
 
