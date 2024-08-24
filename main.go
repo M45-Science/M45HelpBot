@@ -44,7 +44,12 @@ func main() {
 	cwlog.StartCWLog()
 	cwlog.DoLog("Starting goDiscInfoBot.")
 
-	readHelps()
+	if readHelps() {
+		writeHelps()
+	} else {
+		time.Sleep(time.Second * 10)
+		return
+	}
 	go CheckLife()
 	go startbot()
 
@@ -117,11 +122,6 @@ func BotReady(s *discordgo.Session, r *discordgo.Ready) {
 
 	/* Message and command hooks */
 	s.AddHandler(MessageCreate)
-
-	if s != nil {
-		/* Save Discord descriptor, we need it */
-		ds = s
-	}
 
 	cwlog.DoLog("Discord bot ready.")
 
@@ -280,25 +280,21 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if len(outLines) > 0 {
 		if checkThrottle(s, m) {
-			cwlog.DoLog(fmt.Sprintf("TRIGGERED:\n%v: %v: %v\nReply: %v", m.ChannelID, m.Author.Username, m.Content, strings.Join(outLines, "\n")))
-			SmartWriteDiscord(m.ChannelID, strings.Join(outLines, "\n"))
-		}
-	}
-}
+			buf := strings.Join(outLines, "\n")
+			cwlog.DoLog(fmt.Sprintf("TRIGGERED:\n%v: %v: %v\nReply: %v", m.ChannelID, m.Author.Username, m.Content, buf))
 
-/*Send normal message to a channel*/
-func SmartWriteDiscord(ch string, text string) {
-
-	if ch == "" || text == "" {
-		return
-	}
-
-	if ds != nil {
-		_, err := ds.ChannelMessageSend(ch, text)
-
-		if err != nil {
-
-			cwlog.DoLog(fmt.Sprintf("SmartWriteDiscord: ERROR: %v", err))
+			reply := &discordgo.MessageSend{
+				Content: buf,
+				Reference: &discordgo.MessageReference{
+					MessageID: m.ID,
+					ChannelID: m.ChannelID,
+					GuildID:   m.GuildID,
+				},
+			}
+			_, err := s.ChannelMessageSendComplex(m.ChannelID, reply)
+			if err != nil {
+				cwlog.DoLog(err.Error())
+			}
 		}
 	}
 }
