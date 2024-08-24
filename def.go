@@ -2,23 +2,20 @@ package main
 
 import (
 	"time"
-
-	"github.com/bwmarrin/discordgo"
 )
 
 const (
 	maxAttempts          = 50
 	throttlePerUser      = time.Minute * 2
 	throttleGlobal       = time.Second * 30
-	maxPerUser           = 5
-	maxGlobal            = 12
+	maxPerUser           = 3
+	maxGlobal            = 10
 	maxCombinedResponses = 3
-	rebootTime           = time.Hour * 24
+	rebootTime           = time.Hour * 12
 )
 
 var (
 	/* Discord data */
-	ds        *discordgo.Session
 	discToken string
 	staffRole string
 	guildID   string
