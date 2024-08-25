@@ -285,7 +285,7 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if len(outLines) > 0 {
-		if checkThrottle(s, m) {
+		if checkThrottle(m) {
 			buf := strings.Join(outLines, "\n")
 			cwlog.DoLog(fmt.Sprintf("TRIGGERED:\n%v: %v: %v\nReply: %v", m.ChannelID, m.Author.Username, m.Content, buf))
 
@@ -305,7 +305,7 @@ func filterMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 }
 
-func checkThrottle(s *discordgo.Session, m *discordgo.MessageCreate) bool {
+func checkThrottle(m *discordgo.MessageCreate) bool {
 	if skipThrottle {
 		return true
 	}

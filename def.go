@@ -28,7 +28,6 @@ var (
 )
 
 type helpData struct {
-	Priority   int      `json:",omitempty"`
 	Wildcards  []string `json:",omitempty"`
 	Words      []string `json:",omitempty"`
 	Exclude    []string `json:",omitempty"`
