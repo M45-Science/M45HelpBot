@@ -47,7 +47,7 @@ func main() {
 	cwlog.DoLog("Starting goDiscInfoBot.")
 
 	if readHelps() {
-		writeHelps()
+		//writeHelps()
 	} else {
 		time.Sleep(time.Second * 10)
 		return
