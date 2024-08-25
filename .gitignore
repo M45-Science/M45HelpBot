@@ -1,4 +1,4 @@
-go.sh
-log/
+*.sh
+log/*.log
 M45HelpBot
 
