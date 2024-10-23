@@ -7,7 +7,7 @@ import (
 const (
 	maxAttempts          = 50
 	throttlePerUser      = time.Hour * 24
-	throttleGlobal       = time.Second * 30
+	throttleGlobal       = time.Minute * 15
 	maxPerUser           = 3
 	maxGlobal            = 14
 	maxCombinedResponses = 3
