@@ -6,12 +6,12 @@ import (
 
 const (
 	maxAttempts          = 50
-	throttlePerUser      = time.Minute * 2
+	throttlePerUser      = time.Hour * 24
 	throttleGlobal       = time.Second * 30
 	maxPerUser           = 3
-	maxGlobal            = 10
+	maxGlobal            = 14
 	maxCombinedResponses = 3
-	rebootTime           = time.Hour * 12
+	rebootTime           = time.Hour * 24 * 6
 )
 
 var (
