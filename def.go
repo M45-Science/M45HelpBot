@@ -11,7 +11,7 @@ const (
 	maxPerUser           = 3
 	maxGlobal            = 14
 	maxCombinedResponses = 3
-	rebootTime           = time.Hour * 24 * 6
+	rebootTime           = time.Hour * 24 * 7
 )
 
 var (
